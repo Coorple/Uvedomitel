@@ -267,12 +267,12 @@ async def scheduler(bot: Bot):
         # Уведомление дежурного в понедельник 12:00
         last_run = data.get("last_run")
         last_run_date = datetime.fromisoformat(last_run).date() if last_run else None
-        if now.weekday() == 0 and now.hour == 12 and (last_run_date != now.date()):
+        if now.weekday() == 1 and now.hour == 10 and (last_run_date != now.date()):
             user_id = get_next_participant()
             fullname = get_fullname_by_user_id(user_id)
             if user_id:
                 await bot.send_message(data["chat_id"],
-                    f"<a href='tg://user?id={user_id}'>{fullname}</a>, твоя очередь на дежурство!</a>",
+                    f"<a href='tg://user?id={user_id}'>{fullname}</a>, твоя очередь на дежурство!",
                     parse_mode="HTML")
             data["last_run"] = now.isoformat()
             save_data(data)
