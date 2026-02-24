@@ -267,6 +267,10 @@ async def scheduler(bot: Bot):
         # Уведомление дежурного в понедельник 12:00
         last_run = data.get("last_run")
         last_run_date = datetime.fromisoformat(last_run).date() if last_run else None
+        print(now.weekday())
+        print(now.hour)
+        print(last_run_date)
+        print(last_run_date != now.date())
         if now.weekday() == 1 and now.hour == 10 and (last_run_date != now.date()):
             user_id = get_next_participant()
             fullname = get_fullname_by_user_id(user_id)
