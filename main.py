@@ -271,7 +271,7 @@ async def scheduler(bot: Bot):
         print(now.hour)
         print(last_run_date)
         print(last_run_date != now.date())
-        if now.weekday() == 1 and now.hour == 10 and (last_run_date != now.date()):
+        if now.weekday() == 0 and now.hour == 11 and (last_run_date != now.date()):
             user_id = get_next_participant()
             fullname = get_fullname_by_user_id(user_id)
             if user_id:
