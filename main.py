@@ -251,13 +251,13 @@ async def scheduler(bot: Bot):
                 fullname = get_fullname_by_user_id(user_id_str)
                 start = parse_date(vac["start"]).date()
                 end = parse_date(vac["end"]).date()
-                if not vac.get("announced_start") and now.date() == start and now.hour == 10:
+                if not vac.get("announced_start") and now.date() == start and now.hour == 7:
                     await bot.send_message(data["chat_id"],
                         f"<a href='tg://user?id={user_id_str}'>{fullname}</a> ушёл в отпуск!",
                         parse_mode="HTML")
                     vac["announced_start"] = True
                     save_data(data)
-                if not vac.get("announced_end") and now.date() == end and now.hour == 10:
+                if not vac.get("announced_end") and now.date() == end and now.hour == 7:
                     await bot.send_message(data["chat_id"],
                         f"<a href='tg://user?id={user_id_str}'>{fullname}</a> вернулся из отпуска!",
                         parse_mode="HTML")
@@ -271,7 +271,7 @@ async def scheduler(bot: Bot):
         print(now.hour)
         print(last_run_date)
         print(last_run_date != now.date())
-        if now.weekday() == 0 and now.hour == 11 and (last_run_date != now.date()):
+        if now.weekday() == 0 and now.hour == 7 and (last_run_date != now.date()):
             user_id = get_next_participant()
             fullname = get_fullname_by_user_id(user_id)
             if user_id:
